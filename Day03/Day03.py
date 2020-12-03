@@ -16,22 +16,22 @@ iterator = 0
 treesList = []
 
 while iterator < len(slopes['xSlopes']):
-  xCurrent = 0
-  yCurrent = 0
+  rowCurrent = 0
+  colCurrent = 0
   xSlope = slopes["xSlopes"][iterator]
   ySlope = slopes["ySlopes"][iterator]
   trees = 0
   while True:
-    column = (xCurrent + xSlope) % width
-    row = (yCurrent + ySlope)
+    column = (rowCurrent + xSlope) % width
+    row = (colCurrent + ySlope)
     if row >= height:
       break
 
     if _input[row][column] == "#":
       trees+= 1
     
-    xCurrent = column
-    yCurrent = row
+    rowCurrent = column
+    colCurrent = row
   if xSlope == 3 and ySlope == 1:
     print(trees)
   treesList.append(trees)
