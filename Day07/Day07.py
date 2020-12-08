@@ -13,6 +13,7 @@ class Bag:
     self.Color = ""
     self.Adj = ""
     self.Count = 0
+    self.ContainsGold = False
 
   def CreateRules(self, line):
     containSplit = line.split('contain')
@@ -37,12 +38,15 @@ class Bag:
   def FindGoldBag(self, bags):
     for childBag in self.Contains:
 
-      if childBag.IsGoldBag():
+      if self.ContainsGold or childBag.ContainsGold or childBag.IsGoldBag():
         return True
       
       matchingBag = [b for b in bags if b.Color == childBag.Color and b.Adj == childBag.Adj][0]
    
       found = matchingBag.FindGoldBag(bags)
+      childBag.ContainsGold = found
+      self.ContainsGold = found
+
       if found:
         return True
 
