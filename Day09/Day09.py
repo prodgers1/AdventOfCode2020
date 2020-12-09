@@ -28,7 +28,6 @@ while True:
       break
       
   if not valid:
-    notValid.append(target)
     print(target)
     break
   
