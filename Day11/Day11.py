@@ -31,7 +31,11 @@ def checkAdjacent(rowIndex, colIndex, grid):
 
 def findNextAvailableSeat(rowIndex, colIndex, grid):
   occupied = 0
-
+  # by checking the change in the row and the change in the column, this gets me every adjacent direction around the current row/col index
+  # by using two more for loops, im able to save a ton of if checking, and now all i have to worry about is if im lower than 0 or greater than
+  # the length of the row or column
+  # The only difference from part 1 is i needed to look indefinitely in the direction i was going to find a seat, and only when it was a floor (.)
+  # look past it, and see if there is ever an occupied seat.
   for dr in [-1,0,1]:
     for dc in [-1,0,1]:
       if dr == 0 and dc == 0:
