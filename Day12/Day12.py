@@ -16,69 +16,26 @@ for line in _input:
   units = int(line[1:])
   directions.append({"direction": direction, "units": units})
 
-def turn(currentDirection, directionToTurn, degrees):
-  if currentDirection == "N":
-    if directionToTurn == "R":
-      if degrees == 90:
-        return 'E'
-      if degrees == 180:
-        return 'S'
-      elif degrees == 270:
-        return 'W'
-    else:
-      if degrees == 90:
-        return 'W'
-      if degrees == 180:
-        return 'S'
-      elif degrees == 270:
-        return 'E'
-  elif currentDirection == "E":
-    if directionToTurn == "R":
-      if degrees == 90:
-        return 'S'
-      if degrees == 180:
-        return 'W'
-      elif degrees == 270:
-        return 'N'
-    else:
-      if degrees == 90:
-        return 'N'
-      if degrees == 180:
-        return 'W'
-      elif degrees == 270:
-        return 'S'     
-  elif currentDirection == "S":
-    if directionToTurn == "R":
-      if degrees == 90:
-        return 'W'
-      if degrees == 180:
-        return 'N'
-      elif degrees == 270:
-        return 'E'
-    else:
-      if degrees == 90:
-        return 'E'
-      if degrees == 180:
-        return 'N'
-      elif degrees == 270:
-        return 'W'
-  elif currentDirection == "W":
-    if directionToTurn == "R":
-      if degrees == 90:
-        return 'N'
-      if degrees == 180:
-        return 'E'
-      elif degrees == 270:
-        return 'S'
-    else:
-      if degrees == 90:
-        return 'S'
-      if degrees == 180:
-        return 'E'
-      elif degrees == 270:
-        return 'N'
+nextDirections = {}
+nextDirections["N"] = ["E", "S", 'W']
+nextDirections["E"] = ["S", "W", "N"]
+nextDirections["S"] = ['W', 'N', "E"]
+nextDirections["W"] = ["N", "E", "S"]
 
+def turn(currentDirection, directionToTurn, degrees):
+  path = nextDirections[currentDirection]
+
+  turns = degrees // 90
   
+  for i in range(turns):
+    if directionToTurn == "R":
+      currentDirection = path[i]
+    elif directionToTurn == "L":
+      copyList = list(path)
+      copyList.reverse()
+      currentDirection = copyList[i]
+
+  return currentDirection
 
 def move(direction):
   global x,y, currentDirection
