@@ -10,8 +10,6 @@ import collections
 _input = GetInput(13)
 
 
-
-
 def part1(): 
   buses = []
   earliestDepart = int(_input[0])
