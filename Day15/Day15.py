@@ -9,15 +9,11 @@ import collections
 
 _input = "2,0,1,7,4,14,18"
 
-_testInput = "2,0,1,7,4,14,18"
-
-_input = _testInput
-
 _input = _input.split(',')
 
 numbersSpoken = {}
 previousNumbersSpoken = {}
-turn =1
+turn = 1
 #dict where key = number and value = turns since last spoken
 
 for i in range(len(_input)):
